@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bolsaempleosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ADMINISTRADORES">
+    <Key>
+      <PropertyRef Name="IdAdmin" />
+    </Key>
+    <Property Name="IdAdmin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cedula" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Correo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Contrasena" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="fechanacimiento" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="CANDIDATOS">
+    <Key>
+      <PropertyRef Name="IdCandidato" />
+    </Key>
+    <Property Name="IdCandidato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cedula" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Correo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Contrasena" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="fechanacimiento" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="bolsaempleosEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ADMINISTRADORES" EntityType="Self.ADMINISTRADORES" />
+    <EntitySet Name="CANDIDATOS" EntityType="Self.CANDIDATOS" />
+    <EntitySet Name="CATEGORIA" EntityType="bolsaempleosModel.CATEGORIA" />
+    <FunctionImport Name="busca_categoria" ReturnType="Collection(bolsaempleosModel.busca_categoria_Result)">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="CONTRATISTAS" EntityType="bolsaempleosModel.CONTRATISTAS" />
+    <EntitySet Name="EMPLEOS" EntityType="bolsaempleosModel.EMPLEOS" />
+    <FunctionImport Name="busca_categoria2" ReturnType="Collection(bolsaempleosModel.busca_categoria2_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="CATEGORIA">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="busca_categoria_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="IdEmpleo" Nullable="true" MaxLength="30" />
+    <Property Type="Binary" Name="Logo" Nullable="true" />
+    <Property Type="String" Name="Posicion" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Ubicacion" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Empresa" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Fechapubli" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <EntityType Name="CONTRATISTAS">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdContratista" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Rnc" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="NombreEmpresa" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Representante" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Correo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Contrasena" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Direccion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="EMPLEOS">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdEmpleo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="IdEmpresa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Empresa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Posicion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Ubicacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Categoria" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="caplicar" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Fechapubli" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Urlx" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="busca_categoria2_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="IdEmpleo" Nullable="true" MaxLength="30" />
+    <Property Type="Binary" Name="Logo" Nullable="true" />
+    <Property Type="String" Name="Posicion" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Ubicacion" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Empresa" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Fechapubli" Nullable="true" MaxLength="30" />
+  </ComplexType>
+</Schema>
